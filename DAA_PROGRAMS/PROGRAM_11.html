@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROGRAM_11</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            width: 100%;
+            background-color: #2e2e2e;
+            padding: 15px;
+            text-align: left;
+            position: fixed;
+            top: 0;
+            z-index: 10;
+        }
+
+        .navbar h1 {
+            color: #ff1744;
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        /* Page Content */
+        .container {
+            margin: 80px auto;
+            max-width: 1200px;
+            padding: 30px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .snippet {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            color: #ff1744;
+            margin-bottom: 20px;
+        }
+
+        .code-container {
+            position: relative;
+            background-color: #2e2e2e;
+            padding: 20px 20px 0 20px;
+            border-radius: 8px;
+            width: 100%;
+            overflow-y: auto;
+            max-height: 550px;
+            box-shadow: 0 0 20px rgba(255, 23, 68, 0.5);
+        }
+
+        .code-container::-webkit-scrollbar {
+            width: 5px;
+        }
+        .code-container::-webkit-scrollbar {
+    width: 5px; /* Vertical scrollbar width */
+    height: 5px; /* Horizontal scrollbar height */
+}
+        .code-container::-webkit-scrollbar-track {
+            background: #2e2e2e;
+            border-radius: 5px;
+        }
+
+        .code-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #efb4c0, #ff2222);
+            border-radius: 5px;
+        }
+
+        .code-container::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #ff9797, #ff1744);
+        }
+
+        pre {
+            font-family: Consolas, monospace;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #e0e0e0;
+            text-align: left;
+        }
+
+        /* Copy Button */
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff1744;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .copy-button:hover {
+            background-color: #d50000;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .code-container {
+                width: 90%;
+                max-height: 250px;
+            }
+
+            pre {
+                font-size: 14px;
+            }
+
+            .copy-button {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <h1>DARK_SOUL</h1>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Code Snippet Section -->
+        <div class="snippet">
+            <h2>N_QUEENS</h2>
+            <div class="code-container">
+                <button class="copy-button" onclick="copyCode('code')">Copy Code</button>
+                <pre id="code">
+#include&lt;stdio.h&gt;
+#define N 8
+
+void printsolution(int board[N][N])
+{
+    int i, j;
+    for(i = 0; i &lt; N; i++)
+    {
+        for(j = 0; j &lt; N; j++)
+        {
+            if(board[i][j])
+            {
+                printf(&quot;Q&quot;);
+            }
+            else
+            {
+                printf(&quot;.&quot;);
+            }
+        }
+        printf(&quot;\n&quot;);
+    }
+}
+
+int issafe(int board[N][N], int row, int col)
+{
+    int i, j;
+    for(i = 0; i &lt; col; i++)
+    {
+        if(board[row][i])
+        {
+            return 0;
+        }
+    }
+    for(i = row, j = col; i &gt;= 0 && j &gt;= 0; i--, j--)
+    {
+        if(board[i][j])
+        {
+            return 0;
+        }
+    }
+    for(i = row, j = col; j &gt;= 0 && i &lt; N; i++, j--)
+    {
+        if(board[i][j])
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int solve(int board[N][N], int col)
+{
+    int i;
+    if(col &gt;= N)
+    {
+        return 1;
+    }
+    for(i = 0; i &lt; N; i++)
+    {
+        if(issafe(board, i, col))
+        {
+            board[i][col] = 1;
+            if(solve(board, col + 1))
+            {
+                return 1;
+            }
+            board[i][col] = 0;
+        }
+    }
+    return 0;
+}
+
+int solveNQ()
+{
+    int board[N][N] = {{0, 0, 0, 0},
+                       {0, 0, 0, 0},
+                       {0, 0, 0, 0},
+                       {0, 0, 0, 0},
+                    };
+    if(solve(board, 0) == 0)
+    {
+        printf(&quot;SOLUTION DOES NOT EXISTS&quot;);
+        return 0;
+    }
+    printsolution(board);
+    return 1;
+}
+
+void main()
+{
+    clrscr();
+    solveNQ();
+    getch();
+}
+
+                </pre>
+            </div>
+        </div>
+
+        <!-- Output Snippet Section -->
+        <div class="snippet">
+            <h2>OUTPUT</h2>
+            <div class="code-container">
+                <pre id="output">
+Q . . . . . . .
+. . . Q . . . .
+. . . . . Q . .
+. . . . . . Q .
+. Q . . . . . .
+. . Q . . . . .
+. . . . Q . . .
+. . . . . . . Q
+
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyCode(elementId) {
+            const codeBlock = document.getElementById(elementId).innerText;
+
+            // Create a temporary textarea to copy the code
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.style.position = 'fixed';
+            tempTextArea.style.opacity = '0';
+            tempTextArea.value = codeBlock;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            // Alert for the copy action
+            alert(elementId.charAt(0).toUpperCase() + elementId.slice(1) + ' copied to clipboard!');
+        }
+    </script>
+</body>
+</html>

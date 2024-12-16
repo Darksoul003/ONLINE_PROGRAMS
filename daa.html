@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAA - DARK_SOUL</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to common styles -->
+    <style>
+        /* General reset for margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+            height: 100vh;
+            overflow-y: auto; /* Allow vertical scrolling */
+        }
+
+        /* Navbar styling */
+        .navbar {
+            width: 100%;
+            background-color: #2e2e2e;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+
+        /* Title styling for the h2 element */
+        h2 {
+            margin-top: 50px; /* Add space between the navbar and the h2 */
+            font-size: 28px;
+            color: #ff1744;
+            text-align: center;
+        }
+
+        /* Content Container with Flexbox Layout for Left and Right columns */
+        .content-container {
+            margin-top: 10px; /* Space below the h2 */
+            display: flex;
+            flex-direction: row; /* Arrange items side by side */
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Left column for the first 10 topics */
+        .left-column {
+            width: 48%;
+        }
+
+        /* Right column for the next 5 topics */
+        .right-column {
+            width: 48%;
+        }
+
+        /* Content box styling */
+        .content-box {
+            background-color: #2e2e2e;
+            color: #e0e0e0;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 23, 68, 0.3);
+            margin: 3px 0;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .serial-number {
+            text-align: center;
+            color: #ff1744;
+            font-weight: bold;
+            font-size: 18px;
+            width: 50px;
+        }
+
+        /* View button styling */
+        .view-button {
+            background-color: #ff1744;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .view-button:hover {
+            background-color: #d50000;
+        }
+        
+        .content-box p {
+        margin: 0; /* Remove extra margins */
+        padding-right: 30px;
+        padding-left: 10px;
+        flex-grow: 1; /* Allow the <p> tag to take the remaining space */
+        text-align: left; /* Align text to the left */
+    }
+    .serial-number {
+        flex-shrink: 0; /* Prevent shrinking of the serial number */
+        width: 50px; /* Fixed width for consistent alignment */
+        text-align: center;
+        color: #ff1744;
+        font-weight: bold;
+        font-size: 18px;
+    }
+       /* Add this part inside the existing media query for better mobile visibility */
+@media (max-width: 768px) {
+    /* Ensure the navbar stays padded correctly */
+    .navbar {
+        padding: 20px; /* Adjust navbar padding as needed */
+    }
+
+    /* Adjust content container to stack content vertically */
+    .content-container {
+        flex-direction: column; /* Stack content vertically on smaller screens */
+        align-items: center;
+        margin-top: 400px; /* Reduced margin-top to avoid pushing the content off screen */
+        padding-top: 450px;
+    }
+
+    /* Adjust h2 styling for mobile to ensure it's visible */
+    h2 {
+        margin-top: 20px; /* Reduced space between navbar and h2 */
+        font-size: 24px; /* Adjust font size for mobile */
+        color: #ff1744;
+        text-align: center;
+    }
+
+    /* Adjust columns to take up full width */
+    .left-column, .right-column {
+        width: 100%; /* Make each column take up the full width */
+        margin-bottom: 20px; /* Add space between columns */
+    }
+
+    .content-box {
+        display: flex; /* Flex container for proper alignment */
+        align-items: center; /* Vertically align items */
+        width: 100%; /* Ensure full-width box */
+        padding: 10px;
+        background-color: #2e2e2e;
+        color: #e0e0e0;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(255, 23, 68, 0.3);
+        margin: 3px 0;
+    }
+
+    .serial-number {
+        flex-shrink: 0; /* Prevent shrinking of the serial number */
+        width: 50px; /* Fixed width for consistent alignment */
+        text-align: center;
+        color: #ff1744;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .content-box p {
+        margin: 0; /* Remove extra margins */
+        flex-grow: 1; /* Allow the <p> tag to take the remaining space */
+        text-align: left; /* Align text to the left */
+    }
+}
+</style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <h1>DARK_SOUL</h1>
+    </div>
+    <!-- Heading added below the navbar -->
+    <h2>DESIGN AND ANALYSIS OF ALGORITHM (DAA)</h2>
+    <!-- Content Container with Flexbox Layout -->
+    <div class="content-container">
+        <!-- Left Column for First 10 Topics -->
+        <div class="left-column">
+            <div class="content-box">
+                <div class="serial-number">1</div>
+                <p>write a program to sort a lsit of N elements using selection  sort technique</p>
+                <button class="view-button" onclick="window.location.href='DAA_PROGRAMS/PROGRAM_01.html'">View</button>
+            </div>
+            <div class="content-box">
+                <div class="serial-number">2</div>
+                <p>write a program to perform travelling salesman problem</p>
+                <button class="view-button" onclick="window.location.href='DAA_PROGRAMS/PROGRAM_02.html'">View</button>
+            </div>
+            <div class="content-box">
+                <div class="serial-number">3</div>
+                <p>write program to implement dynamic programming algorithm for the 0/1 knapsack problem</p>
+                <button class="view-button" onclick="window.location.href='DAA_PROGRAMS/PROGRAM_03.html'">View</button>
+            </div>
+            <div class="content-box">
+                <div class="serial-number">4</div>
+                <p>write a program to implement the dfs and bfs algorithm for a graph</p>
+                <button class="view-button" onclick="window.location.href='DAA_PROGRAMS/PROGRAM_04.html'">View</button>
+            </div>
+            <div class="content-box">
+                <div class="serial-number">5</div>
+                <p>write a program to find the minimum and maximum value in an array using divide & conquer</p>
+                <button class="view-button" onclick="window.location.href='DAA_PROGRAMS/PROGRAM_05.html'">View</button>
+            </div>
+            <div class="content-box">
+                <div class="serial-number">6</div>
+                <p>write a test program to implement divide and conquer strategy (quick sort)</p>
+                <button class="view-button" onclick="window.location.href='DAA_PROGRAMS/PROGRAM_06.html'">View</button>
+            </div>
+            <div class="content-box">
+                <div class="serial-number">7</div>
+                <p>write a program to implement merge sort algorithm for sorting a list of integeres in ascending order</p>
+                <button class="view-button" onclick="window.location.href='DAA_PROGRAMS/PROGRAM_07.html'">View</button>
+            </div>
+            <div class="content-box">
+                <div class="serial-number">8</div>
+                <p>write a program that accepts the vertices and edges for a graph and stores it as an adjacency matrix </p>
+                <button class="view-button" onclick="window.location.href='DAA_PROGRAMS/PROGRAM_08.html'">View</button>
+            </div>
+            <div class="content-box">
+                <div class="serial-number">9</div>
+                <p>implement function to print in-degree, out-degree  and to display the adjacency matrix matrix</p>
+                <button class="view-button" onclick="window.location.href='DAA_PROGRAMS/PROGRAM_09.html'">View</button>
+            </div>
+            <div class="content-box">
+                <div class="serial-number">10</div>
+                <p>write a program to perform knapsack problem using greedy solution technique </p>
+                <button class="view-button" onclick="window.location.href='DAA_PROGRAMS/PROGRAM_10.html'">View</button>
+            </div>
+        </div>
+
+        <!-- Right Column for Next 5 Topics -->
+        <div class="right-column">
+            <div class="content-box">
+                <div class="serial-number">11</div>
+                <p>write a program to implement the backtracking algorithm for solving problem like nqueens</p>
+                <button class="view-button" onclick="window.location.href='DAA_PROGRAMS/PROGRAM_11.html'">View</button>
+            </div>
+            <div class="content-box">
+                <div class="serial-number">12</div>
+                <p>write a program to implement the backtracking algorithm for the sum sum of subsets problem</p>
+                <button class="view-button" onclick="window.location.href='DAA_PROGRAMS/PROGRAM_12.html'">View</button>
+            </div>
+            <div class="content-box">
+                <div class="serial-number">13</div>
+                <p>write program to implement greedy algorithm for job sequencing with deadlines </p>
+                <button class="view-button" onclick="window.location.href='DAA_PROGRAMS/PROGRAM_13.html'">View</button>
+            </div>
+            <div class="content-box">
+                <div class="serial-number">14</div>
+                <p>write program to implement dynamic programming algorithm for the optimal binary search tree problem</p>
+                <button class="view-button" onclick="window.location.href='DAA_PROGRAMS/PROGRAM_14.html'">View</button>
+            </div>
+            <div class="content-box">
+                <div class="serial-number">15</div>
+                <p>write a program that implements prim's algorithm to generate minimum cost spanning tree</p>
+                <button class="view-button" onclick="window.location.href='DAA_PROGRAMS/PROGRAM_15.html'">View</button>
+            </div>
+            <div class="content-box">
+                <div class="serial-number">16</div>
+                <p>write a program that implements kruskal's algorithm to generate minimum spanning tree</p>
+                <button class="view-button" onclick="window.location.href='DAA_PROGRAMS/PROGRAM_16.html'">View</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROGRAM_10</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            width: 100%;
+            background-color: #2e2e2e;
+            padding: 15px;
+            text-align: left;
+            position: fixed;
+            top: 0;
+            z-index: 10;
+        }
+
+        .navbar h1 {
+            color: #ff1744;
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        /* Page Content */
+        .container {
+            margin: 80px auto;
+            max-width: 1200px;
+            padding: 30px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .snippet {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            color: #ff1744;
+            margin-bottom: 20px;
+        }
+
+        .code-container {
+            position: relative;
+            background-color: #2e2e2e;
+            padding: 20px 20px 0 20px;
+            border-radius: 8px;
+            width: 100%;
+            overflow-y: auto;
+            max-height: 550px;
+            box-shadow: 0 0 20px rgba(255, 23, 68, 0.5);
+        }
+
+        .code-container::-webkit-scrollbar {
+            width: 5px;
+        }
+        .code-container::-webkit-scrollbar {
+    width: 5px; /* Vertical scrollbar width */
+    height: 5px; /* Horizontal scrollbar height */
+}
+        .code-container::-webkit-scrollbar-track {
+            background: #2e2e2e;
+            border-radius: 5px;
+        }
+
+        .code-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #efb4c0, #ff2222);
+            border-radius: 5px;
+        }
+
+        .code-container::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #ff9797, #ff1744);
+        }
+
+        pre {
+            font-family: Consolas, monospace;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #e0e0e0;
+            text-align: left;
+        }
+
+        /* Copy Button */
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff1744;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .copy-button:hover {
+            background-color: #d50000;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .code-container {
+                width: 90%;
+                max-height: 250px;
+            }
+
+            pre {
+                font-size: 14px;
+            }
+
+            .copy-button {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <h1>DARK_SOUL</h1>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Code Snippet Section -->
+        <div class="snippet">
+            <h2>GREEDY KNAPSACK</h2>
+            <div class="code-container">
+                <button class="copy-button" onclick="copyCode('code')">Copy Code</button>
+                <pre id="code">
+#include&lt;stdio.h&gt;
+#include&lt;conio.h&gt;
+
+void knapsack(int n, float weight[], float profit[], float capacity)
+{
+    float x[20], tp = 0;
+    int i, j, u;
+    u = capacity;
+
+    for(i = 0; i &lt; n; i++)
+    {
+        x[i] = 0.0;
+    }
+
+    for(i = 0; i &lt; n; i++)
+    {
+        if(weight[i] &gt; u)
+            break;
+        else
+        {
+            x[i] = 1.0;
+            tp = tp + profit[i];
+            u = u - weight[i];
+        }
+    }
+
+    if(i &lt; n)
+    {
+        x[i] = u / weight[i];
+    }
+
+    tp = tp + (x[i] * profit[i]);
+
+    printf(&quot;\n THE RESULT VECTOR IS : &quot;);
+    for(i = 0; i &lt; n; i++)
+    {
+        printf(&quot;%f \t&quot;, x[i]);
+    }
+
+    printf(&quot;\n MAXIMUM PROFIT IS : %f&quot;, tp);
+}
+
+int main()
+{
+    float weight[20], profit[20], capacity;
+    int num, i, j;
+    float ratio[20], temp;
+
+    clrscr();
+    printf(&quot;\n ENTER THE NO. OF OBJECTS : &quot;);
+    scanf(&quot;%d&quot;, &num);
+
+    printf(&quot;\n ENTER THE WEIGHTS AND PROFITS OF EACH OBJECT : &quot;);
+    for(i = 0; i &lt; num; i++)
+    {
+        scanf(&quot;%f%f&quot;, &weight[i], &profit[i]);
+    }
+
+    printf(&quot;\n ENTER THE CAPACITY OF KNAPSACK : &quot;);
+    scanf(&quot;%f&quot;, &capacity);
+
+    for(i = 0; i &lt; num; i++)
+    {
+        ratio[i] = profit[i] / weight[i];
+    }
+
+    for(i = 0; i &lt; num; i++)
+    {
+        for(j = i + 1; j &lt; num; j++)
+        {
+            if(ratio[i] &lt; ratio[j])
+            {
+                // Swap ratio
+                temp = ratio[i];
+                ratio[i] = ratio[j];
+                ratio[j] = temp;
+
+                // Swap weight
+                temp = weight[i];
+                weight[i] = weight[j];
+                weight[j] = temp;
+
+                // Swap profit
+                temp = profit[i];
+                profit[i] = profit[j];
+                profit[j] = temp;
+            }
+        }
+    }
+
+    knapsack(num, weight, profit, capacity);
+
+    getch();
+    return 0;
+}
+
+                </pre>
+            </div>
+        </div>
+
+        <!-- Output Snippet Section -->
+        <div class="snippet">
+            <h2>OUTPUT</h2>
+            <div class="code-container">
+                <pre id="output">
+ENTER THE NO. OF OBJECTS : 4
+
+ENTER THE WEIGHTS AND PROFITS OF EACH OBJECT : 
+10 60
+20 100
+30 120
+ENTER THE CAPACITY OF KNAPSACK : 50
+
+ THE RESULT VECTOR IS : 1.000000     1.000000     0.666667     0.000000     
+ MAXIMUM PROFIT IS : 240.000000
+
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyCode(elementId) {
+            const codeBlock = document.getElementById(elementId).innerText;
+
+            // Create a temporary textarea to copy the code
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.style.position = 'fixed';
+            tempTextArea.style.opacity = '0';
+            tempTextArea.value = codeBlock;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            // Alert for the copy action
+            alert(elementId.charAt(0).toUpperCase() + elementId.slice(1) + ' copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
